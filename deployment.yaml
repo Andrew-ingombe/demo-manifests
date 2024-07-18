@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  # creationTimestamp: null
+  labels:
+    app: node-app
+  name: node-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: node-app
+  strategy: {}
+  template:
+    metadata:
+      # creationTimestamp: null
+      labels:
+        app: node-app
+    spec:
+      containers:
+        - image: andrewingombe/demo:latest
+          name: node-app
+          resources: {}
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: lb-service
+  labels:
+    app: lb-service
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 1337
+  selector:
+    app: node-app
