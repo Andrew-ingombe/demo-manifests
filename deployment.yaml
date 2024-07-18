@@ -18,7 +18,7 @@ spec:
         app: node-app
     spec:
       containers:
-        - image: andrewingombe/demo:latest
+        - image: andrewingombe/demo:6
           name: node-app
           resources: {}
 status: {}
